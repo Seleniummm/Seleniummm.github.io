@@ -11,7 +11,8 @@
 <meta property="og:title" content="赵曼辰 · 化学竞赛教练">
 <meta property="og:description" content="我走过的路，沉淀成了一套培养计划。">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23FDFDFD'/%3E%3Cpolygon points='16,5 25,10.5 25,21.5 16,27 7,21.5 7,10.5' fill='none' stroke='%232E3A46' stroke-width='1.5'/%3E%3C/svg%3E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="stylesheet" href="style.css">
 <!--
   设计方法参考：ESTHER不二 · esther-design-system
@@ -20,7 +21,26 @@
   说明：仅借鉴其布局方法论与场景规范，未使用其模板与组件代码。
 -->
 </head>
-<body>
+<body id="top">
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#top">
+      <img class="nav-logo" src="assets/logo.png" alt="赵曼辰">
+      <span>赵曼辰</span>
+    </a>
+    <div class="nav-links">
+      <a href="#story">来路</a>
+      <a href="#program">计划</a>
+      <a href="#method">教学</a>
+      <a href="#faq">问答</a>
+      <a href="#contact">联系</a>
+      <a href="#materials">资料</a>
+    </div>
+  </div>
+</nav>
+
+
 
 <!-- ==================== 首屏 ==================== -->
 <header class="hero">
@@ -175,7 +195,7 @@
 
     <div class="program-intro">
       <p class="program-lead">化学，是变化之学。它既考验捕捉规律的洞察力，也磨炼严谨推演的耐心。</p>
-      <p class="program-lead">从一名初二学生到省级竞赛一等奖，需要的不是天赋的偶然，而是一套清晰、扎实、被反复验证的培养体系。</p>
+      <p class="program-lead">从一名初二学生到省级竞赛一等奖，需要的不是天赋的偶然，<span class="nb">而是一套清晰、扎实、被反复验证的培养体系。</span></p>
       <p class="program-pivot">这就是那套体系。</p>
     </div>
 
@@ -207,7 +227,7 @@
 
     <p class="program-goal">目标只有一个：<strong>零基础起步，高一入学 9 月，具备冲击初赛一等奖的能力。</strong></p>
 
-    <p class="program-close">这不是把大学教材提前讲一遍。它按一个十四岁学生的认知顺序，重新决定先讲什么、后讲什么、哪里必须停下来练。</p>
+    <p class="program-close">这不是把大学教材提前讲一遍。它按一个十四岁学生的认知顺序，<span class="nb">重新决定先讲什么、后讲什么、哪里必须停下来练。</span></p>
 
     <p class="program-close"><span class="mark">这条路需要合适的坡度——太陡会摔，太平会困。</span></p>
 
@@ -253,6 +273,8 @@
     </div>
   </div>
 </section>
+
+
 
 <!-- ==================== 05 方法 ==================== -->
 <section class="section" id="method">
@@ -369,6 +391,36 @@
   </div>
 </section>
 
+<!-- ==================== 08 资料 ==================== -->
+<section class="section" id="materials">
+  <div class="container">
+    <p class="eyebrow">08 — 资料</p>
+    <h2>讲义与习题</h2>
+    <p class="lead">目前先放初二上学期的内容，其余学期会陆续补充。</p>
+
+    <div class="mat-grid">
+      <a class="mat-card reveal" href="resources.html#handout">
+        <span class="mat-kind">初二上学期 · 讲义</span>
+        <span class="mat-dl">查看 →</span>
+      </a>
+
+      <a class="mat-card reveal reveal-d1" href="resources.html#quiz">
+        <span class="mat-kind">初二上学期 · 测验</span>
+        <span class="mat-dl">查看 →</span>
+      </a>
+
+      <a class="mat-card reveal reveal-d2" href="resources.html#notes">
+        <span class="mat-kind">竞赛入门 · 手稿</span>
+        <span class="mat-dl">查看 →</span>
+      </a>
+    </div>
+
+    <!-- 资料上线后，把对应卡片的 <span class="mat-state">整理中</span> 换成：
+         <a class="mat-dl" href="materials/handout-01.pdf" target="_blank" rel="noopener">下载 ↓</a>
+         文件放进 materials 文件夹，文件名用英文。 -->
+  </div>
+</section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
@@ -380,6 +432,16 @@
 
 <script>
 (function () {
+
+  var navEl = document.getElementById('nav');
+  if (navEl) {
+    var onScroll = function () {
+      navEl.classList.toggle('scrolled', window.scrollY > 8);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   var reveals = document.querySelectorAll('.reveal');

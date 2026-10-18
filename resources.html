@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>资料 · 赵曼辰</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="stylesheet" href="style.css">
+<style>
+  .res-main {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: clamp(46px, 7vh, 84px) clamp(22px, 5vw, 32px) clamp(64px, 9vh, 104px);
+  }
+  .res-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    border: 0;
+    margin-bottom: clamp(24px, 4vw, 36px);
+  }
+  .res-back:hover { color: var(--ink); }
+  .res-title {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 4.4vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0 0 10px;
+    letter-spacing: 0.02em;
+  }
+  .res-sub {
+    font-size: 0.92rem;
+    color: var(--ink-faint);
+    margin: 0 0 clamp(34px, 5vw, 52px);
+    line-height: 1.85;
+  }
+  .res-group { margin-bottom: clamp(34px, 4.6vw, 52px); }
+  .res-group:last-child { margin-bottom: 0; }
+  .res-gh {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    font-weight: 500;
+    margin: 0 0 6px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--ink);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .res-gh span { color: var(--ink-faint); letter-spacing: 0.06em; font-weight: 400; }
+  .res-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 13px 2px;
+    border-bottom: 1px solid var(--rule);
+    border-top: 0;
+    text-decoration: none;
+  }
+  .res-item:hover { background: var(--paper-alt); }
+  .res-name {
+    flex: 1;
+    font-size: 0.94rem;
+    color: var(--ink);
+    line-height: 1.6;
+    word-break: break-all;
+  }
+  .res-size {
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .res-dl {
+    font-size: 0.76rem;
+    color: var(--accent);
+    white-space: nowrap;
+    border-bottom: 1px solid var(--accent);
+  }
+  .res-empty, .res-msg {
+    font-size: 0.9rem;
+    color: var(--ink-faint);
+    padding: 26px 2px;
+    line-height: 1.9;
+  }
+  .res-tip {
+    margin-top: 18px;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+    line-height: 1.9;
+    padding-left: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html">
+      <img class="nav-logo" src="assets/logo.png" alt="赵曼辰">
+      <span>赵曼辰</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">主页</a>
+    </div>
+  </div>
+</nav>
+
+<main class="res-main">
+  <a class="res-back" href="index.html">← 返回主页</a>
+
+  <h1 class="res-title">资料</h1>
+  <p class="res-sub">讲义、测验与手稿，按上传顺序排列。</p>
+
+  <div id="list">
+    <p class="res-msg">正在加载…</p>
+  </div>
+
+  <p class="res-tip" id="tip"></p>
+</main>
+
+<script>
+(function () {
+  var REPO = 'Seleniummm/Seleniummm.github.io';
+  var GROUPS = [
+    { key: 'handout', label: '讲义', re: /^(handout|jiangyi|lecture)/i },
+    { key: 'quiz',    label: '测验', re: /^(quiz|test|ceyan)/i },
+    { key: 'notes',   label: '手稿', re: /^(note|notes|draft|shougao|manuscript)/i }
+  ];
+
+  var listEl = document.getElementById('list');
+  var tipEl = document.getElementById('tip');
+
+  function fmtSize(n) {
+    if (!n) return '';
+    if (n < 1024 * 1024) return Math.round(n / 1024) + ' KB';
+    return (n / 1024 / 1024).toFixed(1) + ' MB';
+  }
+
+  function naturalSort(a, b) {
+    return a.localeCompare(b, 'zh-CN', { numeric: true, sensitivity: 'base' });
+  }
+
+  function render(files) {
+    if (!files || !files.length) {
+      listEl.innerHTML = '<p class="res-empty">资料正在整理，第一份上传后会显示在这里。</p>';
+      return;
+    }
+
+    var buckets = {};
+    GROUPS.forEach(function (g) { buckets[g.key] = []; });
+    buckets.other = [];
+
+    files.forEach(function (f) {
+      var hit = GROUPS.filter(function (g) { return g.re.test(f.name); })[0];
+      (hit ? buckets[hit.key] : buckets.other).push(f);
+    });
+
+    var html = '';
+
+    GROUPS.concat([{ key: 'other', label: '其他' }]).forEach(function (g) {
+      var arr = buckets[g.key];
+      if (!arr || !arr.length) return;
+      arr.sort(function (a, b) { return naturalSort(a.name, b.name); });
+
+      html += '<section class="res-group">';
+      html += '<h2 class="res-gh">' + g.label + '<span>' + arr.length + ' 份</span></h2>';
+      arr.forEach(function (f) {
+        var label = f.name.replace(/\.[^.]+$/, '');
+        var m = label.match(/^(handout|quiz|note|notes|draft|test)-(\d+)-(.+)$/i);
+        if (m) label = m[2] + '　' + m[3];
+        html += '<a class="res-item" href="materials/' + encodeURIComponent(f.name) + '" target="_blank" rel="noopener">';
+        html += '<span class="res-name">' + label + '</span>';
+        html += '<span class="res-size">' + fmtSize(f.size) + '</span>';
+        html += '<span class="res-dl">下载</span>';
+        html += '</a>';
+      });
+      html += '</section>';
+    });
+
+    listEl.innerHTML = html;
+  }
+
+  function load() {
+    fetch('https://api.github.com/repos/' + REPO + '/contents/materials')
+      .then(function (r) { if (!r.ok) throw new Error('api'); return r.json(); })
+      .then(function (data) {
+        var files = data
+          .filter(function (f) { return f.type === 'file' && /\.pdf$/i.test(f.name); })
+          .map(function (f) { return { name: f.name, size: f.size }; });
+        render(files);
+      })
+      .catch(function () {
+        return fetch('https://data.jsdelivr.com/v1/packages/gh/' + REPO + '@main?structure=flat')
+          .then(function (r) { return r.json(); })
+          .then(function (d) {
+            var files = (d.files || [])
+              .filter(function (f) { return /^\/materials\/.+\.pdf$/i.test(f.name); })
+              .map(function (f) { return { name: f.name.replace('/materials/', ''), size: f.size }; });
+            render(files);
+            if (files.length) tipEl.textContent = '个别刚上传的文件可能需要几分钟才会出现在这里。';
+          });
+      })
+      .catch(function () {
+        listEl.innerHTML = '<p class="res-msg">暂时无法读取文件列表，请直接访问 <a href="materials/">materials 文件夹</a>。</p>';
+      });
+  }
+
+  load();
+})();
+</script>
+
+</body>
+</html>
