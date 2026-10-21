@@ -108,6 +108,7 @@ p:last-child { margin-bottom: 0; }
   font-size: 1.02rem;
   color: var(--ink-soft);
   line-height: 1.9;
+  max-width: 760px;
 }
 
 .strong-line {
@@ -361,12 +362,9 @@ p:last-child { margin-bottom: 0; }
 
 /* ---------- 02 故事 ---------- */
 
-.story-layout {
-  display: grid;
-  grid-template-columns: 118px 1fr;
-  gap: clamp(32px, 5.5vw, 76px);
-  align-items: start;
-}
+.story-layout { display: block; }
+
+.story-body { max-width: 760px; }
 
 .story-nav {
   position: sticky;
@@ -405,15 +403,18 @@ p:last-child { margin-bottom: 0; }
   opacity: 0.7;
 }
 
-.story-item {
-  padding-bottom: clamp(38px, 5.5vw, 58px);
-  margin-bottom: clamp(38px, 5.5vw, 58px);
-  border-bottom: 1px solid var(--rule);
-}
-.story-item:last-child { border-bottom: 0; margin-bottom: 0; padding-bottom: 0; }
+.story-item { margin-bottom: clamp(30px, 4.4vw, 46px); }
+.story-item:last-child { margin-bottom: 0; }
 
 .story-item p { color: var(--ink-soft); }
-.story-item p.first { color: var(--ink); }
+
+/* 故事里的强调：不跳到 bold，只用描边微加粗 + 深一档墨色 */
+.story-item strong {
+  font-weight: inherit;
+  color: var(--ink);
+  -webkit-text-stroke: 0.28px currentColor;
+}
+.story-item p.first { color: var(--ink-soft); }
 
 .story-time {
   font-family: var(--serif);
@@ -427,11 +428,45 @@ p:last-child { margin-bottom: 0; }
 
 .story-big {
   font-family: var(--serif);
-  font-size: clamp(1.2rem, 2.6vw, 1.5rem);
-  line-height: 1.7;
+  font-size: clamp(1.1rem, 2.3vw, 1.34rem);
+  line-height: 1.75;
   color: var(--ink);
   font-weight: 600;
   margin: 0 0 1em;
+}
+
+
+/* 来路首段：图文并排 */
+.story-split {
+  display: grid;
+  grid-template-columns: 268px 1fr;
+  gap: clamp(26px, 4vw, 52px);
+  align-items: center;
+  max-width: 860px;
+}
+
+.story-split > .split-figure { order: 1; }
+.story-split > .split-text { order: 2; }
+
+.story-split .split-text p:last-child { margin-bottom: 0; }
+
+.split-text p { line-height: 1.85; margin-bottom: 1.05em; }
+.split-text p.first { margin-bottom: 1.05em; }
+
+.split-figure { margin: 0; }
+
+.split-figure .photo-frame { aspect-ratio: 11 / 10; }
+
+.split-figure .photo-caption {
+  margin-top: 11px;
+  font-size: 0.72rem;
+  line-height: 1.75;
+  color: var(--ink-faint);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 780px) {
+  .story-split { grid-template-columns: 1fr; gap: 22px; }
 }
 
 /* 故事内嵌图 */
@@ -523,23 +558,20 @@ p:last-child { margin-bottom: 0; }
 
 .program-lead {
   font-family: var(--serif);
-  font-size: clamp(1.08rem, 2.4vw, 1.3rem);
+  font-size: clamp(1rem, 2.1vw, 1.14rem);
   line-height: 1.95;
+  font-weight: 600;
   color: var(--ink);
-  max-width: 34em;
+  max-width: 42.2em;
   margin: 0 0 1.05em;
   text-wrap: pretty;
 }
 
 .program-pivot {
-  font-family: var(--serif);
-  font-size: clamp(1.18rem, 2.9vw, 1.55rem);
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: 0.02em;
-  margin: clamp(26px, 3.4vw, 38px) 0 0;
-  padding-top: clamp(20px, 2.6vw, 28px);
-  border-top: 1px solid var(--rule);
+  font-size: clamp(0.96rem, 2vw, 1.04rem);
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin: clamp(14px, 2vw, 20px) 0 0;
 }
 
 .module-block { margin-top: clamp(34px, 4.6vw, 56px); }
@@ -566,7 +598,7 @@ p:last-child { margin-bottom: 0; }
   align-items: baseline;
   gap: 10px;
   padding: 9px 0;
-  border-bottom: 1px dotted var(--rule-dark);
+  border-bottom: 1px solid var(--rule);
   font-size: 0.9rem;
   line-height: 1.5;
 }
@@ -583,15 +615,22 @@ p:last-child { margin-bottom: 0; }
   white-space: nowrap;
 }
 
+.program-note-inline {
+  margin: 12px 0 1.5em;
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+  line-height: 1.85;
+  max-width: 760px;
+}
+
 .program-goal {
   margin-top: clamp(30px, 4vw, 44px);
   font-family: var(--serif);
-  font-size: clamp(1rem, 2.2vw, 1.14rem);
-  line-height: 1.85;
+  font-size: clamp(0.98rem, 2vw, 1.04rem);
+  line-height: 1.9;
   color: var(--ink);
-  padding: clamp(18px, 2.4vw, 26px) 0;
-  border-top: 2px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
+  padding: clamp(18px, 2.4vw, 24px) clamp(20px, 2.8vw, 28px);
+  background: var(--paper-alt);
 }
 
 .program-goal strong { font-weight: 600; }
@@ -599,34 +638,44 @@ p:last-child { margin-bottom: 0; }
 .program-close {
   margin-top: clamp(24px, 3.2vw, 34px);
   color: var(--ink-soft);
-  max-width: 38em;
+  max-width: 47.5em;
   text-wrap: pretty;
 }
 
 .program-tail {
   margin-top: clamp(26px, 3.4vw, 38px);
   font-family: var(--serif);
-  font-size: clamp(1rem, 2.2vw, 1.12rem);
+  font-size: clamp(0.98rem, 2vw, 1.04rem);
   font-weight: 600;
   color: var(--ink);
 }
 
 
 .photo-slider {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: clamp(10px, 1.6vw, 14px);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 10px;
   margin: clamp(26px, 3.6vw, 36px) 0 0;
-  scrollbar-width: thin;
 }
-.photo-slider::-webkit-scrollbar { height: 2px; }
-.photo-slider::-webkit-scrollbar-thumb { background: var(--rule-dark); }
+
 .photo-slider .photo-frame {
-  flex: 0 0 calc(50% - 7px);
   aspect-ratio: 2 / 3;
-  scroll-snap-align: start;
+}
+
+@media (max-width: 600px) {
+  .photo-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+  }
+  .photo-slider::-webkit-scrollbar { height: 2px; }
+  .photo-slider::-webkit-scrollbar-thumb { background: var(--rule-dark); }
+  .photo-slider .photo-frame {
+    flex: 0 0 74%;
+    scroll-snap-align: start;
+  }
 }
 
 /* ---------- 03 地图 ---------- */
@@ -638,10 +687,7 @@ p:last-child { margin-bottom: 0; }
   align-items: center;
 }
 
-.map-figure {
-  border-top: 2px solid var(--ink);
-  padding-top: clamp(18px, 2.6vw, 24px);
-}
+.map-figure { padding-top: 0; }
 
 .map-number {
   font-family: var(--serif);
@@ -672,10 +718,7 @@ p:last-child { margin-bottom: 0; }
   gap: clamp(20px, 3vw, 38px);
 }
 
-.mark-card {
-  border-top: 1px solid var(--rule-dark);
-  padding-top: clamp(16px, 2.2vw, 22px);
-}
+.mark-card { padding-top: 0; }
 
 .mark-idx {
   display: block;
@@ -706,8 +749,6 @@ p:last-child { margin-bottom: 0; }
 /* 资料下载条 */
 .doc-row {
   margin-top: clamp(26px, 3.6vw, 40px);
-  padding-top: clamp(18px, 2.6vw, 26px);
-  border-top: 1px solid var(--rule);
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -740,7 +781,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .mat-card {
-  border-top: 2px solid var(--ink);
+  border-top: 1px solid var(--rule-dark);
   padding-top: clamp(16px, 2.2vw, 22px);
   display: flex;
   flex-direction: column;
@@ -863,32 +904,6 @@ p:last-child { margin-bottom: 0; }
 .step h3 { margin-bottom: 0.45em; }
 .step p { color: var(--ink-soft); font-size: 0.9rem; max-width: 34em; }
 
-
-/* ---------- 04 资料 ---------- */
-
-.mat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: clamp(26px, 4vw, 52px);
-  max-width: 920px;
-}
-
-.mat-card {
-  border-top: 2px solid var(--ink);
-  padding-top: clamp(16px, 2.2vw, 22px);
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-  padding-bottom: 4px;
-  transition: border-top-color .25s ease;
-}
-
-.mat-card .mat-dl { margin-top: 14px; }
-
-.mat-card:hover { border-top-color: var(--accent); }
-
-.mat-card:hover .mat-dl { color: var(--accent); border-bottom-color: var(--accent); }
 
 .mat-kind {
   font-size: 0.72rem;
@@ -1029,6 +1044,7 @@ p:last-child { margin-bottom: 0; }
   font-size: clamp(0.98rem, 2vw, 1.1rem);
   line-height: 1.85;
   color: var(--ink);
+  max-width: 760px;
 }
 
 /* ---------- 07 FAQ ---------- */

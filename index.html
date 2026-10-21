@@ -13,7 +13,7 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
-<link rel="stylesheet" href="style.css?v=202610182241">
+<link rel="stylesheet" href="style.css?v=202610210854">
 <!--
   设计方法参考：ESTHER不二 · esther-design-system
   https://github.com/esthersjw/esther-design-system
@@ -83,7 +83,7 @@
 
         <dl class="facts">
           <dt>学位</dt>
-          <dd>北京大学　应用化学　理学学士<br>北京大学　文物保护技术　历史学学士</dd>
+          <dd>北京大学　应用化学　理学学士<br>文物保护技术　历史学学士（双学位）</dd>
           <dt>奖项</dt>
           <dd>第 32 届中国化学奥林匹克决赛　<b>金牌</b></dd>
           <dt>邮箱</dt>
@@ -101,23 +101,18 @@
     <p class="eyebrow">01 — 来路</p>
 
     <div class="story-layout">
-      <nav class="story-nav" aria-label="故事节点">
-        <button class="active" data-target="s1"><span class="idx">01</span>结果</button>
-        <button data-target="s2"><span class="idx">02</span>起点</button>
-        <button data-target="s3"><span class="idx">03</span>门票</button>
-        <button data-target="s4"><span class="idx">04</span>本科</button>
-        <button data-target="s5"><span class="idx">05</span>回来</button>
-      </nav>
-
-      <div class="story-body">
+            <div class="story-body">
 
         <article class="story-item" id="s1">
           <span class="story-time">2017 — 2018</span>
-          <p class="first">2017 年 9 月，高二，第一次参加化学竞赛初赛，二等奖。</p>
-          <p>2018 年 9 月，高三，第二次参加，一等奖。</p>
-          <p>三个月后，第 32 届中国化学奥林匹克决赛，金牌。</p>
+          <div class="story-split">
+            <div class="split-text">
+              <p class="first">2017 年 9 月，我高二，第一次去考化学竞赛初赛，省二。</p>
+              <p>2018 年 9 月，高三，第二次，省一。那年 12 月，<span class="nb">第 32 届中国化学奥林匹克</span>决赛，<strong>金牌</strong>。</p>
+              <p>第二年进了<strong>北大化学与分子工程学院</strong>。</p>
+            </div>
 
-          <figure class="story-figure">
+            <figure class="story-figure split-figure">
             <div class="photo-frame">
               <img src="assets/award.png" alt="化学竞赛获奖照片"
                    onerror="this.parentNode.classList.add('is-empty');this.remove();">
@@ -127,29 +122,26 @@
                 <span class="ph-hint">放入 assets/award.jpg<br>建议 3:2 横版</span>
               </div>
             </div>
-            <figcaption class="photo-caption">第 32 届中国化学奥林匹克决赛，2018 年 12 月。</figcaption>
-          </figure>
+            </figure>
+          </div>
         </article>
 
         <article class="story-item" id="s2">
-          <p class="story-big">但故事的开头不是这样的。</p>
-          <p>我开始学竞赛，理由很朴素：我喜欢化学。</p>
-          <p>喜欢到会自己去找大学教材翻，喜欢到觉得配平一个复杂的方程式是件有意思的事。那时候我没有任何计划，没想过金牌，更没想过北大。</p>
+          <p class="story-big">写出来是三行。当时不是这么想的。</p>
+          <p>我开始学竞赛的时候没有规划。喜欢化学，就去翻大学教材，觉得配平一个挺复杂的方程式很有意思。金牌没想过，北大也没想过。</p>
         </article>
 
         <article class="story-item" id="s3">
-          <p>2018 年 12 月，金牌来了。2019 年，北大来了。</p>
-          <p>它们是后来才出现的。</p>
-          <p>我常常想，如果一开始就奔着它们去，我大概走不到那一步。这条路太长了，长到任何一个功利的目的都撑不到终点。<span class="mark">能撑住的，只有喜欢。</span></p>
-          <p>这不是说结果不重要。竞赛成绩确实给了我一张很好的门票——但<span class="mark">那张门票是跟着我走的，不是我朝着它走的</span>。</p>
+          <p>这两样都是后来的事。</p>
+          <p>把结果当目标去安排这条路，多数人走不到终点，能走到底的往往是别的东西。</p>
+          <p><span class="mark">这话听着像劝人，它确实是我自己的经验。</span></p>
         </article>
 
         <article class="story-item" id="s4">
-          <p>2019 年，我进入北京大学化学与分子工程学院。</p>
-          <p>本科期间，我还修了文物保护技术的双学位。我想知道化学离开教室以后，还能用在什么地方。</p>
-          <p>文物保护给出的答案最直接：一件从海里捞起来的铁器，锈成了什么、为什么会继续锈、用什么能让它停下来，每一个问题都要回到化学。本科项目“南海Ⅰ号”出水铁锅中 β-FeOOH 的转化，是我第一次利用手里的方程式面对真实存在了七百年的东西。</p>
-          <p>化学不是一门只在卷面上成立的学科。</p>
-          <p>2024 年 7 月毕业，8 月走上讲台。我没有给自己留间隔年。</p>
+          <p>本科我修了文物保护技术的双学位。当时想知道，化学离开教室还能用在哪儿。</p>
+          <p>文物保护给了我答案。一件从海里捞上来的铁器，锈蚀的成分是什么，为什么还在继续<span class="nb">锈蚀</span>，怎么才能阻止进一步的<span class="nb">锈蚀</span>，每一个问题都要回到化学。本科项目做的是南海Ⅰ号<span class="nb">出水</span>铁锅里 β-FeOOH 的转化。</p>
+          <p><span class="mark">这是我第一次用手里的方程式去处理一件在海里泡了七百年的文物。</span></p>
+          <p>2024 年 7 月毕业，8 月站上讲台。</p>
 
           <div class="photo-slider">
             <figure class="photo-frame">
@@ -175,11 +167,10 @@
         </article>
 
         <article class="story-item" id="s5">
-          <p>2025 年 6 月，我回到山东，成为山东省实验中学的化学竞赛教练。</p>
-          <p>有人问，北大化学毕业，为什么回中学。答案并不宏大：我从这里出去，就想回到这里。</p>
-          <p>我一直记得第一次翻开竞赛书时，那种不知道从哪一页开始的茫然——以及后来，我多么希望有个人能告诉我，哪里该慢一点，哪里可以跳过去。</p>
-          <p class="strong-line">这件事需要有人长期做，而我恰好愿意。</p>
-          <p>于是我把那条路，写成了一套可以交给别人的方案。</p>
+          <p>2025 年 6 月回山东，在山东省实验中学做化学竞赛教练。</p>
+          <p>有人问我，北大化学毕业为什么回中学。我没有很宏大的理由。我从这里出去，就想回到这里。</p>
+          <p>第一次翻开竞赛书那会儿，我不知道该从哪一页开始。花了很多时间才搞清楚，哪几章要慢，哪几块可以直接跳过去。那时候要是有人在旁边说一句，能省下太多时间。</p>
+          <p class="strong-line">现在这个人可以是我。</p>
         </article>
 
       </div>
@@ -194,9 +185,8 @@
     <h2>化学竞赛人才培养计划</h2>
 
     <div class="program-intro">
-      <p class="program-lead">化学，是变化之学。它既考验捕捉规律的洞察力，也磨炼严谨推演的耐心。</p>
-      <p class="program-lead">从一名初二学生到省级竞赛一等奖，需要的不是天赋的偶然，<span class="nb">而是一套清晰、扎实、被反复验证的培养体系。</span></p>
-      <p class="program-pivot">这就是那套体系。</p>
+      <p class="program-lead">化学竞赛的备考周期长，知识点层层叠加，中途夹生的部分很难在后期补回来。</p>
+      <p class="program-pivot">所以这份计划先要解决的是顺序。排多少课，是后面的事。</p>
     </div>
 
     <div class="map-layout" style="margin-top:clamp(34px,4.6vw,58px)">
@@ -206,8 +196,8 @@
       </div>
 
       <div class="map-body reveal reveal-d1">
-        <p class="lead">303 课时，七个阶段，覆盖初二上至初三下。以《中国化学奥林匹克基本要求（2024 年修订版）》为纲，按大学先修教材的知识深度编排。</p>
-        <p>课程结构是：<b>236 节新课、36 次测试、28 次讲评、3 次阶段测评</b>，合计 303 课时。</p>
+        <p class="lead">《化学竞赛人才培养计划》303 课时，七个阶段，从初二上排到初三下，跟着初中学制走。依据《中国化学奥林匹克基本要求（2024 年修订版）》，深度按大学先修教材。</p>
+        <p>其中新课 <b>236</b> 节，测试 <b>36</b> 次，讲评 <b>28</b> 次，阶段测评 <b>3</b> 次，合起来 303 课时。</p>
       </div>
     </div>
 
@@ -225,13 +215,14 @@
       </div>
     </div>
 
-    <p class="program-goal">目标只有一个：<strong>零基础起步，高一入学 9 月，具备冲击初赛一等奖的能力。</strong></p>
+    <p class="program-goal">目标放在<strong>高一入学那年的 9 月</strong>。到那时候，要具备参加初赛的知识储备和训练量。</p>
+    <p class="program-note-inline">（初赛指中国化学奥林匹克初赛，每年 9 月举行，省一、省二、省三奖项在此产生，省队也以此成绩为依据。）</p>
 
-    <p class="program-close">这不是把大学教材提前讲一遍。它按一个十四岁学生的认知顺序，<span class="nb">重新决定先讲什么、后讲什么、哪里必须停下来练。</span></p>
+    <p class="program-close">课的推进顺序不跟大学教材走。按一个十四岁学生的接受顺序重排，哪些概念<span class="nb">必须先讲</span>，<span class="nb">哪些可以放到后面</span>，<span class="nb">哪一节必须停下来练</span>。这些判断没有标准答案，<span class="mark nb">我在讲义里把每一处的理由都写了</span>。</p>
 
-    <p class="program-close"><span class="mark">这条路需要合适的坡度——太陡会摔，太平会困。</span></p>
+    <p class="program-close"><span class="mark">坡度太陡会摔，太平会困。这几届下来，我对这套课的坡度还算有数。</span></p>
 
-    <p class="program-tail">而这张课表，只是四件东西里的一件。</p>
+    <p class="program-tail">而课表只是四件东西里的一件。</p>
   </div>
 </section>
 
@@ -245,24 +236,25 @@
       <div class="mark-card reveal">
         <span class="mark-idx">M-01</span>
         <h3>可复制的培养计划</h3>
-        <p>303 课时，七阶段，五模块。每个阶段结束时学生应达到什么，都有明确的验收条目。它可以交给另一位教练直接执行，而不只是跟着某一个人走。</p>
+        <p>303 课时，七个阶段。每个阶段结束都有验收条目，写清学生该到什么水平。</p>
       </div>
       <div class="mark-card reveal reveal-d1">
         <span class="mark-idx">M-02</span>
         <h3>专门的讲义</h3>
-        <p>已编写 24 讲。不照搬大学教材，按初中生的认知顺序重写。同一个概念，第一遍怎么讲、第二遍怎么讲、学生仍不理解时换什么说法，都写进了讲义。</p>
+        <p>已写 24 讲。不照搬大学教材。同一个概念第一遍怎么讲，第二遍怎么讲，学生还是不懂时换什么说法，都写在里面。</p>
       </div>
       <div class="mark-card reveal reveal-d2">
         <span class="mark-idx">M-03</span>
         <h3>量身定制的题库</h3>
-        <p>已收录 907 道题，按知识点、难度、题型三个维度标注。题目不是批量抓取，而是按课程进度逐节配置——讲到哪，练到哪。</p>
+        <p>已收录 <b>3628</b> 道，按知识点、难度、题型三个维度标好，跟着课程进度逐节配。讲到哪，练到哪。</p>
       </div>
     </div>
 
     <div class="mark-wide reveal">
       <span class="mark-idx">M-04</span>
-      <h3>还有一套正在写的规则</h3>
-      <p>一套选拔与培养的评估方式。不是为了筛掉谁，而是为了在起点就知道：这个孩子适合走多快，哪一段需要放慢。</p>
+      <h3>评估与选拔系统，还在写</h3>
+      <p>入学时判断起点和合适的节奏，过程中记录每个阶段的掌握情况，阶段末给分层建议。选拔用它，培养也用它。</p>
+      <p style="margin-top:10px;color:var(--ink-faint);font-size:0.88em;">这部分我没写完。评估条目和分层标准要足够的实际样本才能定稿。样本不够的时候，不盲目下结论。</p>
     </div>
 
     <div class="doc-row reveal">
@@ -286,22 +278,22 @@
       <div class="step reveal">
         <span class="step-num">1</span>
         <h3>七次课，一个循环</h3>
-        <p>五次新课，一次测试，一次讲评。当天的问题当天清。</p>
+        <p>五次新课，一次测试，一次讲评。当天的问题当天清掉。</p>
       </div>
       <div class="step reveal">
         <span class="step-num">2</span>
         <h3>每三到四节课，一次测评</h3>
-        <p>不是为了排名，是为了知道哪里还没学会。我不喜欢“夹生饭”——煮到一半的米，再回锅就很难熟。</p>
+        <p>测评不看排名，看的是哪一部分还没掌握。竞赛知识是叠着长的，一处夹生，后面连续失分。</p>
       </div>
       <div class="step reveal">
         <span class="step-num">3</span>
         <h3>两到四章，合并出卷</h3>
-        <p>竞赛和课内最大的差别，是题目不会告诉你它考的是哪一章。</p>
+        <p>竞赛题不会告诉你它考哪一章，学生得在没提示的情况下自己判断考点。</p>
       </div>
       <div class="step reveal">
         <span class="step-num">4</span>
         <h3>每个阶段，一份报告</h3>
-        <p>会什么、不会什么、下一步做什么，写清楚。</p>
+        <p>写明白——会什么，不会什么，下一步做什么。</p>
       </div>
     </div>
   </div>
@@ -323,22 +315,22 @@
       <div class="trip-card">
         <span class="phase">初二上 · 寒假</span>
         <span class="hours">27<small>课时</small></span>
-        <p>初中化学起步，培养学习习惯。</p>
+        <p>初中化学起步，建立学习习惯。</p>
       </div>
       <div class="trip-card">
         <span class="phase">初二下 · 暑假</span>
         <span class="hours">38<small>课时</small></span>
-        <p>无机原理打底，开始频繁测评。</p>
+        <p>无机原理打底，开始高频测评。</p>
       </div>
       <div class="trip-card">
         <span class="phase">初三上</span>
         <span class="hours">120<small>课时</small></span>
-        <p>原理深化与结构化学，真正的主战场。</p>
+        <p>原理深化与结构化学。</p>
       </div>
       <div class="trip-card">
         <span class="phase">初三寒假</span>
         <span class="hours">12<small>课时</small></span>
-        <p>有机化学开启。</p>
+        <p>有机化学开始。</p>
       </div>
       <div class="trip-card">
         <span class="phase">初三下</span>
@@ -358,27 +350,34 @@
 
     <div class="faq-grid">
       <div class="faq-item reveal">
-        <h3>化学零基础，来得及吗？</h3>
-        <p>来得及。课程从初中化学核心讲起，不假设任何竞赛基础。</p>
+        <h3>什么时候开始合适？</h3>
+        <p>七个阶段完整走完，起点是初二上。初三开始的可以插进来，前面几个阶段要压缩，但来得及。</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>化学零基础行不行？</h3>
+        <p>完全可以。课程设计从初中化学的核心讲起，不预设竞赛基础。初二起步的，前两个阶段本来就在打课内底子。</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>怎么知道孩子适不适合？</h3>
+        <p>数学基础跟不跟得上，能不能接受长周期的学习训练。这两条比化学成绩更能推演后面的情况。</p>
       </div>
       <div class="faq-item reveal">
         <h3>学竞赛对升学有帮助吗？</h3>
-        <p>有，而且可能比想象中大。但它是结果，不是目标。我见过太多冲着它来的人，走到一半就走不下去了。</p>
+        <p>有。不过升学是结果，拿它当安排学习的指标，路容易走歪。冲着结果来的学生，很难坚持下去。</p>
       </div>
       <div class="faq-item reveal">
         <h3>会影响课内成绩吗？</h3>
-        <p>课时安排在周末与寒暑假。竞赛训练对课内数理是正反馈，不是挤占。</p>
-      </div>
-      <div class="faq-item reveal">
-        <h3>怎么知道孩子学得怎么样？</h3>
-        <p>每三到四节课一次测评，每个阶段一份书面报告。重要节点我会主动联系。</p>
+        <p>课时排在周末和寒暑假，不占正常上课时间。竞赛内容和课内数理有重叠，多数情况是相互加强。</p>
       </div>
       <div class="faq-item reveal">
         <h3>需要什么基础？</h3>
-        <p>数学和逻辑基础过关就可以。化学，可以从零开始。</p>
+        <p>数学和逻辑过关，化学从零开始。</p>
+      </div>
+      <div class="faq-item reveal">
+        <h3>怎么了解学习情况？</h3>
+        <p>每三到四节课一次测评，每个阶段一份报告，及时跟进。</p>
       </div>
     </div>
-  </div>
 </section>
 
 <!-- ==================== 08 联系 ==================== -->
@@ -459,34 +458,6 @@
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  var navBtns = document.querySelectorAll('.story-nav button');
-  var stories = document.querySelectorAll('.story-item');
-
-  function setActive(id) {
-    navBtns.forEach(function (b) {
-      b.classList.toggle('active', b.dataset.target === id);
-    });
-  }
-
-  navBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var el = document.getElementById(btn.dataset.target);
-      if (el) {
-        var y = el.getBoundingClientRect().top + window.pageYOffset - 80;
-        window.scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' });
-      }
-      setActive(btn.dataset.target);
-    });
-  });
-
-  if ('IntersectionObserver' in window && stories.length) {
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) setActive(e.target.id);
-      });
-    }, { threshold: 0.08, rootMargin: '-22% 0px -58% 0px' });
-    stories.forEach(function (s) { so.observe(s); });
-  }
 })();
 </script>
 
