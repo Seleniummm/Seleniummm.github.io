@@ -3,6 +3,23 @@
    视觉参考：PRISM（Deep Navy & Gold 学术配色）+ esther-design-system（布局方法论）
    ========================================================================== */
 
+/* 中文衬线：Noto Serif SC（SIL OFL），按本站字符集子集化，574 字 / 单字重 177KB */
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("assets/fonts/noto-serif-sc-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Serif SC";
+  src: url("assets/fonts/noto-serif-sc-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* 底色：近纯白，论文纸感 */
   --paper:      #FDFDFD;
@@ -12,7 +29,7 @@
   /* 文字：近黑，带极轻冷调，不用纯黑 */
   --ink:        #0A0C0F;
   --ink-soft:   #3F4750;
-  --ink-faint:  #767E88;
+  --ink-faint:  #5F6670;   /* 原 #767E88 在近白底上只有 4.06:1，11px 小字偏虚 */
 
   /* 强调：深石板灰蓝 */
   --accent:     #2E3A46;
@@ -21,7 +38,7 @@
   --rule:       #E4E6E8;
   --rule-dark:  #C6CAD0;
 
-  --serif: "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
   --sans:  "Inter", "PingFang SC", "Microsoft YaHei", "Source Han Sans SC", "Noto Sans CJK SC", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   --w: 1040px;
@@ -76,8 +93,8 @@ a:hover { color: var(--accent); border-bottom-color: var(--accent); }
 .section { padding: clamp(64px, 9vh, 116px) 0; }
 
 .eyebrow {
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
   color: var(--accent);
   margin: 0 0 1.1em;
   font-weight: 500;
@@ -105,11 +122,57 @@ p { margin: 0 0 1.25em; }
 p:last-child { margin-bottom: 0; }
 
 .lead {
-  font-size: 1.02rem;
+  font-size: 1rem;
   color: var(--ink-soft);
   line-height: 1.9;
   max-width: 760px;
 }
+
+/* ---------- 短行控制 ----------
+   中文没有空格，浏览器只能按字宽硬切，末行常剩三五字（“违法换行”的根源）。
+   text-wrap: balance 让浏览器在同一行数内重新分配每行字数，短段落不再出现孤尾。
+   Chrome / Edge 114+、Firefox 121+ 支持；其余浏览器退回普通断行，不报错。 */
+
+h1, h2, h3 { text-wrap: balance; }
+
+/* 宽栏正文：两端对齐（中文排版的常规做法），各行右边界齐平，
+   相邻段落的块宽看起来一致。
+   注意：必须同时关掉 balance —— balance 会先把行压短，再用字距撑满，
+   结果字与字之间全是缝。两者只能取一个。 */
+.story-item p,
+.map-body p,
+.step p,
+.mark-wide p,
+.program-lead,
+.program-close,
+.program-goal {
+  text-align: justify;
+  text-justify: inter-ideograph;
+  text-wrap: wrap;
+}
+
+/* 窄屏（平板及以下）每行只有三十几个字，两端对齐反而容易切出两三个字的尾行，
+   这时退回均衡断行，宁可右边界不齐也不要孤字 */
+@media (max-width: 900px) {
+  .story-item p,
+  .map-body p,
+  .step p,
+  .mark-wide p,
+  .program-lead,
+  .program-close,
+  .program-goal {
+    text-align: start;
+    text-wrap: balance;
+  }
+}
+
+.facts dd,
+.mark-card p,
+.faq-item p,
+.trip-card p,
+.trip-note,
+.contact-line,
+.hero-quote { text-wrap: balance; }
 
 .strong-line {
   font-family: var(--serif);
@@ -118,8 +181,15 @@ p:last-child { margin-bottom: 0; }
   color: var(--ink);
 }
 
+/* 强调：不用整块底色（会把字压进灰块里），改为贴住字脚的一条底带 */
 .mark {
-  background-color: rgba(46, 58, 70, 0.09);
+  background-image: linear-gradient(
+    transparent 60%,
+    rgba(46, 58, 70, 0.14) 60%,
+    rgba(46, 58, 70, 0.14) 94%,
+    transparent 94%
+  );
+  padding-bottom: 2px;
 }
 
 .hairline { height: 1px; background: var(--rule); border: 0; margin: 0; }
@@ -173,8 +243,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 .ph-hint {
-  font-size: 0.66rem;
-  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
   color: var(--ink-faint);
   line-height: 1.6;
 }
@@ -265,10 +335,16 @@ p:last-child { margin-bottom: 0; }
 
 @media (max-width: 600px) {
   .nav-inner { height: 52px; gap: 12px; }
-  .nav-logo { height: 24px; }
-  .nav-brand { gap: 8px; }
-  .nav-links { gap: 15px; }
-  .nav-links a { font-size: 0.76rem; }
+  .nav-logo { height: 21px; }
+  .nav-brand { gap: 8px; font-size: 1rem; }
+  .nav-links { gap: 11px; }
+  .nav-links a { font-size: 0.74rem; letter-spacing: 0.04em; }
+}
+
+/* 320px 级别的极窄屏：只留签名，不放名字，保证六个导航项不折行 */
+@media (max-width: 360px) {
+  .nav-brand span { display: none; }
+  .nav-links { gap: 9px; }
 }
 
 /* ---------- 01 Hero（学术主页版：左像右文） ---------- */
@@ -307,10 +383,19 @@ p:last-child { margin-bottom: 0; }
 }
 
 .hero-role {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.7em;
   font-size: 0.94rem;
   color: var(--ink-soft);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   margin: 0 0 1.6em;
+}
+
+/* 窄屏放不下时换成两行，中间的间隔号隐藏 */
+@media (max-width: 620px) {
+  .hero-role-sep { display: none; }
 }
 
 .hero-quote {
@@ -330,8 +415,8 @@ p:last-child { margin-bottom: 0; }
   display: grid;
   grid-template-columns: max-content 1fr;
   gap: 7px clamp(16px, 2.4vw, 30px);
-  font-size: 0.84rem;
-  line-height: 1.7;
+  font-size: 0.9rem;
+  line-height: 1.75;
   max-width: 560px;
 }
 
@@ -346,19 +431,17 @@ p:last-child { margin-bottom: 0; }
   color: var(--ink-soft);
 }
 
-.facts dd b { color: var(--ink); font-weight: 500; }
+.facts dd b { color: var(--ink); font-weight: 400; }
 
-/* Hero 装饰线 */
-.hero-motif {
-  position: absolute;
-  right: -6vw;
-  top: 50%;
-  transform: translateY(-50%);
-  width: clamp(340px, 40vw, 540px);
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 1;
+/* 学位两行：学校占一列，两个学位从同一列起 */
+.deg-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 1em;
+  row-gap: 2px;
 }
+
+.deg-list .deg-school { grid-row: 1 / span 2; }
 
 /* ---------- 02 故事 ---------- */
 
@@ -418,7 +501,7 @@ p:last-child { margin-bottom: 0; }
 
 .story-time {
   font-family: var(--serif);
-  font-size: 0.86rem;
+  font-size: 0.8rem;
   letter-spacing: 0.1em;
   color: var(--accent);
   display: block;
@@ -564,7 +647,6 @@ p:last-child { margin-bottom: 0; }
   color: var(--ink);
   max-width: 42.2em;
   margin: 0 0 1.05em;
-  text-wrap: pretty;
 }
 
 .program-pivot {
@@ -617,7 +699,7 @@ p:last-child { margin-bottom: 0; }
 
 .program-note-inline {
   margin: 12px 0 1.5em;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--ink-faint);
   line-height: 1.85;
   max-width: 760px;
@@ -639,7 +721,6 @@ p:last-child { margin-bottom: 0; }
   margin-top: clamp(24px, 3.2vw, 34px);
   color: var(--ink-soft);
   max-width: 47.5em;
-  text-wrap: pretty;
 }
 
 .program-tail {
@@ -723,8 +804,8 @@ p:last-child { margin-bottom: 0; }
 .mark-idx {
   display: block;
   font-family: var(--serif);
-  font-size: 0.78rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
   color: var(--accent);
   margin-bottom: 12px;
 }
@@ -737,13 +818,15 @@ p:last-child { margin-bottom: 0; }
   line-height: 1.85;
 }
 
+/* M-04：未完成项，视觉上弱于三张已完成卡 —— 虚线框表示"还在写"，不用色块抢注意力 */
 .mark-wide {
-  margin-top: clamp(28px, 4vw, 44px);
-  background: var(--paper-alt);
-  padding: clamp(24px, 3.4vw, 38px);
+  margin-top: clamp(24px, 3.4vw, 34px);
+  padding: clamp(18px, 2.4vw, 24px) clamp(18px, 2.6vw, 26px);
+  border: 1px dashed var(--rule-dark);
+  max-width: 760px;
 }
 
-.mark-wide h3 { margin-bottom: 0.5em; }
+.mark-wide h3 { margin-bottom: 0.5em; color: var(--ink-soft); }
 .mark-wide p { color: var(--ink-soft); font-size: 0.9rem; }
 
 /* 资料下载条 */
@@ -756,8 +839,8 @@ p:last-child { margin-bottom: 0; }
 }
 
 .doc-label {
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
   color: var(--ink-faint);
 }
 
@@ -862,6 +945,9 @@ p:last-child { margin-bottom: 0; }
 
 /* ---------- 05 方法 ---------- */
 
+/* 这一节没有 h2，steps 直接接在 eyebrow 下，需补一点呼吸 */
+#method .steps { margin-top: clamp(18px, 2.6vw, 26px); }
+
 .steps {
   position: relative;
   padding-left: clamp(40px, 5.4vw, 56px);
@@ -902,7 +988,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .step h3 { margin-bottom: 0.45em; }
-.step p { color: var(--ink-soft); font-size: 0.9rem; max-width: 34em; }
+.step p { color: var(--ink-soft); font-size: 0.9rem; max-width: 46em; }
 
 
 .mat-kind {
@@ -1024,16 +1110,16 @@ p:last-child { margin-bottom: 0; }
 
 .trip-card .hours small {
   font-family: var(--sans);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 400;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--ink-faint);
   margin-left: 5px;
 }
 
 .trip-card p {
   margin-top: 12px;
-  font-size: 0.86rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
   line-height: 1.8;
 }
@@ -1055,16 +1141,19 @@ p:last-child { margin-bottom: 0; }
   gap: clamp(18px, 2.6vw, 30px);
 }
 
-.faq-item { border-top: 1px solid var(--rule); padding-top: clamp(16px, 2.2vw, 22px); }
+.faq-item {
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(16px, 2.2vw, 22px);
+}
 
 .faq-item h3 {
   font-family: var(--sans);
   font-size: 0.94rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 0.55em;
 }
 
-.faq-item p { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.85; }
+.faq-item p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.85; }
 
 /* ---------- 08 联系 ---------- */
 
@@ -1095,7 +1184,7 @@ p:last-child { margin-bottom: 0; }
 
 .contact-note {
   margin: clamp(14px, 2vw, 20px) 0 0;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   letter-spacing: 0.01em;
   line-height: 1.9;
   color: var(--ink-faint);
@@ -1114,8 +1203,8 @@ p:last-child { margin-bottom: 0; }
   gap: 8px 24px;
   justify-content: space-between;
   align-items: baseline;
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   color: var(--ink-faint);
   line-height: 1.9;
 }
@@ -1142,8 +1231,6 @@ p:last-child { margin-bottom: 0; }
     gap: 22px;
   }
   .hero h1 { font-size: clamp(1.9rem, 6.5vw, 2.4rem); }
-  .facts { grid-template-columns: 1fr; gap: 2px; }
-  .facts dt { margin-top: 6px; }
 
   .story-layout { grid-template-columns: 1fr; }
   .story-nav {
@@ -1170,12 +1257,12 @@ p:last-child { margin-bottom: 0; }
   .steps { padding-left: 36px; }
   .steps::before { left: 13px; }
   .step-num { left: -36px; width: 29px; height: 29px; font-size: 0.72rem; }
-
-  .hero-motif { opacity: 0.03; right: -20vw; }
 }
 
 @media (max-width: 600px) {
   body { font-size: 15px; }
+  .facts { grid-template-columns: 1fr; gap: 2px; }
+  .facts dt { margin-top: 6px; }
   .photo-slider .photo-frame { flex: 0 0 74%; }
   .hero-grid { grid-template-columns: 1fr; gap: 24px; }
   .hero-portrait { max-width: 168px; }
@@ -1195,7 +1282,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 @media print {
-  .hero-motif, .story-nav, .trip-hint { display: none; }
+  .story-nav, .trip-hint { display: none; }
   .section { padding: 26px 0; }
   body { background: #fff; }
   .photo-frame { break-inside: avoid; }

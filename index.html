@@ -13,7 +13,8 @@
 
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
-<link rel="stylesheet" href="style.css?v=202610210854">
+<link rel="preload" href="assets/fonts/noto-serif-sc-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css?v=202610301600">
 <!--
   设计方法参考：ESTHER不二 · esther-design-system
   https://github.com/esthersjw/esther-design-system
@@ -34,8 +35,8 @@
       <a href="#program">计划</a>
       <a href="#method">教学</a>
       <a href="#faq">问答</a>
-      <a href="#contact">联系</a>
       <a href="#materials">资料</a>
+      <a href="#contact">联系</a>
     </div>
   </div>
 </nav>
@@ -44,22 +45,6 @@
 
 <!-- ==================== 首屏 ==================== -->
 <header class="hero">
-  <svg class="hero-motif" viewBox="0 0 400 400" fill="none" aria-hidden="true">
-    <g stroke="#0A0C0F" stroke-width="1">
-      <polygon points="200,124 266,162 266,238 200,276 134,238 134,162"></polygon>
-      <circle cx="200" cy="200" r="42"></circle>
-      <line x1="266" y1="162" x2="322" y2="130"></line>
-      <line x1="134" y1="162" x2="78" y2="130"></line>
-      <line x1="200" y1="276" x2="200" y2="340"></line>
-      <line x1="266" y1="238" x2="322" y2="270"></line>
-      <line x1="134" y1="238" x2="78" y2="270"></line>
-      <circle cx="322" cy="130" r="3.5"></circle>
-      <circle cx="78" cy="130" r="3.5"></circle>
-      <circle cx="200" cy="340" r="3.5"></circle>
-      <circle cx="322" cy="270" r="3.5"></circle>
-    </g>
-  </svg>
-
   <div class="container">
     <div class="hero-grid">
 
@@ -78,12 +63,12 @@
       <div class="hero-info">
         <p class="eyebrow">化学竞赛教练</p>
         <h1>赵曼辰</h1>
-        <p class="hero-role">山东省实验中学　·　北京大学化学与分子工程学院校友</p>
+        <p class="hero-role"><span>山东省实验中学</span><span class="hero-role-sep">·</span><span>北京大学化学与分子工程学院校友</span></p>
         <p class="hero-quote">我走过的路，<br>沉淀成了一套培养计划。</p>
 
         <dl class="facts">
           <dt>学位</dt>
-          <dd>北京大学　应用化学　理学学士<br>文物保护技术　历史学学士（双学位）</dd>
+          <dd class="deg-list"><span class="deg-school">北京大学</span><span>应用化学　理学学士</span><span>文物保护技术　历史学学士（双学位）</span></dd>
           <dt>奖项</dt>
           <dd>第 32 届中国化学奥林匹克决赛　<b>金牌</b></dd>
           <dt>邮箱</dt>
@@ -138,7 +123,7 @@
         </article>
 
         <article class="story-item" id="s4">
-          <p>本科我修了文物保护技术的双学位。当时想知道，化学离开教室还能用在哪儿。</p>
+          <p>本科我修了文物保护技术的双学位。当时想知道，化学离开实验室还能用在哪儿。</p>
           <p>文物保护给了我答案。一件从海里捞上来的铁器，锈蚀的成分是什么，为什么还在继续<span class="nb">锈蚀</span>，怎么才能阻止进一步的<span class="nb">锈蚀</span>，每一个问题都要回到化学。本科项目做的是南海Ⅰ号<span class="nb">出水</span>铁锅里 β-FeOOH 的转化。</p>
           <p><span class="mark">这是我第一次用手里的方程式去处理一件在海里泡了七百年的文物。</span></p>
           <p>2024 年 7 月毕业，8 月站上讲台。</p>
@@ -178,7 +163,7 @@
   </div>
 </section>
 
-<!-- ==================== 03 培养计划 ==================== -->
+<!-- ==================== 02 培养计划 ==================== -->
 <section class="section" id="program">
   <div class="container">
     <p class="eyebrow">02 — 培养计划</p>
@@ -197,7 +182,7 @@
 
       <div class="map-body reveal reveal-d1">
         <p class="lead">《化学竞赛人才培养计划》303 课时，七个阶段，从初二上排到初三下，跟着初中学制走。依据《中国化学奥林匹克基本要求（2024 年修订版）》，深度按大学先修教材。</p>
-        <p>其中新课 <b>236</b> 节，测试 <b>36</b> 次，讲评 <b>28</b> 次，阶段测评 <b>3</b> 次，合起来 303 课时。</p>
+        <p>其中新课 <b>236</b> 节，测试 <b>36</b> 次，讲评 <b>28</b> 次，阶段测评 <b>3</b> 次，<span class="nb">合起来 303 课时。</span></p>
       </div>
     </div>
 
@@ -215,7 +200,7 @@
       </div>
     </div>
 
-    <p class="program-goal">目标放在<strong>高一入学那年的 9 月</strong>。到那时候，要具备参加初赛的知识储备和训练量。</p>
+    <p class="program-goal"><strong>高一入学的 9 月</strong>要具备参加初赛的知识储备和训练量。</p>
     <p class="program-note-inline">（初赛指中国化学奥林匹克初赛，每年 9 月举行，省一、省二、省三奖项在此产生，省队也以此成绩为依据。）</p>
 
     <p class="program-close">课的推进顺序不跟大学教材走。按一个十四岁学生的接受顺序重排，哪些概念<span class="nb">必须先讲</span>，<span class="nb">哪些可以放到后面</span>，<span class="nb">哪一节必须停下来练</span>。这些判断没有标准答案，<span class="mark nb">我在讲义里把每一处的理由都写了</span>。</p>
@@ -226,7 +211,7 @@
   </div>
 </section>
 
-<!-- ==================== 04 三个标记 ==================== -->
+<!-- ==================== 03 方案构成 ==================== -->
 <section class="section" id="marks">
   <div class="container">
     <p class="eyebrow">03 — 方案构成</p>
@@ -268,11 +253,10 @@
 
 
 
-<!-- ==================== 05 方法 ==================== -->
+<!-- ==================== 04 教学实施 ==================== -->
 <section class="section" id="method">
   <div class="container">
     <p class="eyebrow">04 — 教学实施</p>
-    <h2>不赶进度，但每一步都算数</h2>
 
     <div class="steps">
       <div class="step reveal">
@@ -299,12 +283,10 @@
   </div>
 </section>
 
-<!-- ==================== 06 行程 ==================== -->
+<!-- ==================== 05 培养路径 ==================== -->
 <section class="section" id="trip">
   <div class="container">
     <p class="eyebrow">05 — 培养路径</p>
-
-    <p class="program-lead" style="margin-bottom:clamp(22px,3vw,32px)">以最专业的方法、最系统的课程、最耐心的陪伴——从第一堂分子结构课，到初赛的考场。</p>
 
     <div class="trip-head">
       <h2 style="margin-bottom:0">七个阶段，一条时间线</h2>
@@ -343,7 +325,7 @@
   </div>
 </section>
 
-<!-- ==================== 07 FAQ ==================== -->
+<!-- ==================== 06 常见问题 ==================== -->
 <section class="section" id="faq">
   <div class="container">
     <p class="eyebrow">06 — 常见问题</p>
@@ -380,20 +362,10 @@
     </div>
 </section>
 
-<!-- ==================== 08 联系 ==================== -->
-<section class="contact" id="contact">
-  <div class="container">
-    <p class="eyebrow">07 — 联系</p>
-    <p class="contact-line">如果想聊聊孩子的化学学习，<br>欢迎预约。</p>
-    <a class="contact-email" href="mailto:zhaomanccc@outlook.com">zhaomanccc@outlook.com</a>
-    <p class="contact-note">来信请注明：孩子姓名、就读学校、联系方式</p>
-  </div>
-</section>
-
-<!-- ==================== 08 资料 ==================== -->
+<!-- ==================== 07 资料 ==================== -->
 <section class="section" id="materials">
   <div class="container">
-    <p class="eyebrow">08 — 资料</p>
+    <p class="eyebrow">07 — 资料</p>
     <h2>讲义与习题</h2>
     <p class="lead">目前先放初二上学期的内容，其余学期会陆续补充。</p>
 
@@ -417,6 +389,16 @@
     <!-- 资料上线后，把对应卡片的 <span class="mat-state">整理中</span> 换成：
          <a class="mat-dl" href="materials/handout-01.pdf" target="_blank" rel="noopener">下载 ↓</a>
          文件放进 materials 文件夹，文件名用英文。 -->
+  </div>
+</section>
+
+<!-- ==================== 08 联系 ==================== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <p class="eyebrow">08 — 联系</p>
+    <p class="contact-line">如果想聊聊孩子的化学学习，<br>欢迎预约。</p>
+    <a class="contact-email" href="mailto:zhaomanccc@outlook.com">zhaomanccc@outlook.com</a>
+    <p class="contact-note">来信请注明：孩子姓名、就读学校、联系方式</p>
   </div>
 </section>
 
